@@ -53,8 +53,8 @@ def my_solve(equations, coefficients):
 
     if len(solution) == len(coefficients):
         coefficient_values = list()
-        for coefficient in coefficients:
-            coefficient_values.append(float(solution[coefficient]))
+        for coefficient in coefficients:            
+            coefficient_values.append(solution[coefficient])
         return coefficient_values
 
 
