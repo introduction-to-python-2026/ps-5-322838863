@@ -1,7 +1,6 @@
 # Add the import statements for necessary sympy functions here
 
 from sympy import symbols
-from sympy import generate_equation_for_element
 from sympy import Eq
 from sympy import solve as sympy_solve
 
