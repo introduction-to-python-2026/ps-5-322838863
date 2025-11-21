@@ -2,7 +2,7 @@
 
 from sympy import symbols
 from sympy import Eq
-from sympy import solve as sympy_solve
+from sympy import solve
 
 
 ELEMENTS = [
