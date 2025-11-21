@@ -20,7 +20,7 @@ def split_before_uppercases(formula):
      
 
 def split_at_digit(formula):
- in enumerate(formula):
+    for i, ch in enumerate(formula):
         if ch.isdigit():
             # First digit found
             prefix = formula[:i]
@@ -30,6 +30,7 @@ def split_at_digit(formula):
     # No digit found
     return formula, 1
             
+    
 atom_dict = {}
 def count_atoms_in_molecule(formula):
     """Takes a molecular formula (string) and returns a dictionary of atom counts.  
