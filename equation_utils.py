@@ -1,4 +1,4 @@
-from sympy import symbols, Eq, solve
+from sympy import symbols, Eq, solve as sympy_solve
 
 ELEMENTS = [
     'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne',
@@ -40,7 +40,7 @@ def build_equations(reactant_atoms, product_atoms):
 
 
 def my_solve(equations, coefficients):
-     solution = solve(equations, coefficients)
+     solution = sympy_solve(equations, coefficients)
 
     if len(solution) == len(coefficients):
         coefficient_values = list()
