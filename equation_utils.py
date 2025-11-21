@@ -46,11 +46,15 @@ def build_equations(reactant_atoms, product_atoms):
     return equations, reactant_coefficients + product_coefficients[:-1]
 
 def my_solve(equations, coefficients):
-    solution = sympy_solve(equations, coefficients)
-
+    solution = sympy_solve(equations, coefficients, dict=True)
+    # sympy returns a list of dicts when dict=True
+    if not solution:
+        raise ValueError("No solution found")
+    solution = solution[0]  # take the first solution dict
     result = []
     for c in coefficients:
-        result.append(nsimplify(solution[c]))  # **return rational numbers**
+        result.append(nsimplify(solution[c]))
+
     return result
     
 def my_solve_old(equations, coefficients):
