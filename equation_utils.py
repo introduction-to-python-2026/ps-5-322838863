@@ -45,8 +45,15 @@ def build_equations(reactant_atoms, product_atoms):
 
     return equations, reactant_coefficients + product_coefficients[:-1]
 
-
 def my_solve(equations, coefficients):
+    solution = sympy_solve(equations, coefficients)
+
+    result = []
+    for c in coefficients:
+        result.append(nsimplify(solution[c]))  # **return rational numbers**
+    return result
+    
+def my_solve_old(equations, coefficients):
     """Solves the system of equations for the coefficients of the reaction.  
     Example: For equations [2*a0 - 2*b0, a1 - b0], returns [1.0, 1.0]."""
     solution = sympy_solve(equations, coefficients)
