@@ -35,7 +35,8 @@ def count_atoms_in_molecule(formula):
     atom_dict = {}
     for atom in split_before_uppercases(formula):
         atom_name, atom_count = split_at_digit(atom)
-        atom_dict.update({atom_name: atom_count})
+        #atom_dict.update({atom_name: atom_count})
+        atom_counts[name] = atom_counts.get(name, 0) + count
     return atom_dict
 
 
