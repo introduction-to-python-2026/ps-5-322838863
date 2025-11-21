@@ -14,3 +14,15 @@ def balance_reaction(reaction): #"Fe2O3 + H2 -> Fe + H2O"
 
     return coefficients # [1/3, 1, 2/3, 1]
 
+from equation_utils import generate_equation_for_element
+from equation_utils import build_equations
+from equation_utils import my_solve
+
+from string_utils import split_before_uppercases
+from string_utils import split_at_digit
+from string_utils import count_atoms_in_molecule
+from string_utils import parse_chemical_reaction
+from string_utils import count_atoms_in_reaction
+
+
+
