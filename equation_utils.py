@@ -20,6 +20,7 @@ def generate_equation_for_element(compounds, coefficients, element):
     for i, compound in enumerate(compounds):
         if element in compound:
             equation += coefficients[i] * compound[element]
+            
     return equation
 
 
