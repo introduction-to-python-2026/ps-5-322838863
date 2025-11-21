@@ -1,4 +1,5 @@
-from sympy import symbols, Eq, solve as sympy_solve
+from sympy import symbols, Eq, solve
+
 
 ELEMENTS = [
     'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne',
@@ -15,20 +16,23 @@ ELEMENTS = [
     'Rg', 'Cn', 'Uut', 'Uuq', 'Uup', 'Uuh', 'Uus', 'Uuo'
 ]
 
-def generate_equation_for_element(compounds, coefficients, element):    
+def generate_equation_for_element(compounds, coefficients, element):
+    """Generates a symbolic equation for the given element from compounds and coefficients.  
+    Example: For H in reactants [{'H': 2}, {'O': 4, 'H': 1}], coefficients [a0, a1], returns 2*a0 + a1."""
     equation = 0
     for i, compound in enumerate(compounds):
         if element in compound:
             equation += coefficients[i] * compound[element]
-            
     return equation
 
 
-def build_equations(reactant_atoms, product_atoms):
+def build_equations(reactant_atoms, product_atoms):        
+    
     reactant_coefficients = list(symbols(f'a0:{len(reactant_atoms)}'))
-    product_coefficients = list(symbols(f'b0:{len(product_atoms)}'))
-    product_coefficients = product_coefficients[:-1] + [1]  # last product = 1
+    product_coefficients = list(symbols(f'b0:{len(product_atoms)}')) 
+    product_coefficients = product_coefficients[:-1] + [1] # Ensure the last coefficient is 1
 
+    ## equations ##
     equations = []
     for element in ELEMENTS:
         lhs = generate_equation_for_element(reactant_atoms, reactant_coefficients, element)
@@ -39,8 +43,9 @@ def build_equations(reactant_atoms, product_atoms):
     return equations, reactant_coefficients + product_coefficients[:-1]
 
 
-def my_solve(equations, coefficients):
-     solution = sympy_solve(equations, coefficients)
+def my_solve(equations, coefficients):    
+    
+    solution = solve(equations, coefficients)
 
     if len(solution) == len(coefficients):
         coefficient_values = list()
