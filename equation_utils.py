@@ -1,5 +1,3 @@
-# equation_utils.py
-
 from sympy import symbols, Eq, solve as sympy_solve, nsimplify
 
 ELEMENTS = [
