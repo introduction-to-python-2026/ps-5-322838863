@@ -1,4 +1,4 @@
-from sympy import symbols, Eq, solve as sympy_solve, nsimplify
+from sympy import symbols, Eq, solve as sympy_solve
 
 ELEMENTS = [
     'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne',
@@ -41,10 +41,16 @@ def build_equations(reactant_atoms, product_atoms):
 
 
 def my_solve(equations, coefficients):
-    """Solves the system of equations for coefficients and returns rationals."""
+    """
+    Solves the system of equations for the coefficients of the reaction
+    and returns float values instead of rationals.
+    """
     solution = sympy_solve(equations, coefficients, dict=True)
     if not solution:
         raise ValueError("No solution found")
     solution = solution[0]  # take the first solution dict
-    result = [nsimplify(solution[c]) for c in coefficients]
+
+    result = []
+    for c in coefficients:
+        result.append(float(solution[c]))  # convert to float
     return result
