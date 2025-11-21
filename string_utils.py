@@ -23,23 +23,23 @@ def split_at_digit(formula):
  in enumerate(formula):
         if ch.isdigit():
             # First digit found
-            prefix = formual[:i]
-            number = int(formual[i:])
+            prefix = formula[:i]
+            number = int(formula[i:])
             return prefix, number
 
     # No digit found
-    return formual, 1
+    return formula, 1
             
-dict = atom_dict{}
-def count_atoms_in_molecule(molecular_formula):
+atom_dict = {}
+def count_atoms_in_molecule(formula):
     """Takes a molecular formula (string) and returns a dictionary of atom counts.  
     Example: 'H2O' → {'H': 2, 'O': 1}"""
 
 
-    for atom in split_by_capitals(molecular_formula):
+    for atom in split_before_uppercases(formula):
         atom_name, atom_count = split_at_digit(atom)
-        atom_dict.update{atom_name: atom_count}
-    return atom_dict{}
+        atom_dict.update({atom_name: atom_count})
+    return atom_dict
         
         
         # Step 2: Update the dictionary with the atom name and count
