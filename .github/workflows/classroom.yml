@@ -13,14 +13,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: ".tests /import_test.py"
+    - name: "tests /import_test.py"
       id: tests-import_test-py
       uses: classroom-resources/autograding-python-grader@v1
       with:
         timeout: 10
         max-score: 5
         setup-command: pip install pytest numpy sympy
-    - name: ".tests /balance_test.py"
+    - name: "tests /balance_test.py"
       id: tests-balance_test-py
       uses: classroom-resources/autograding-python-grader@v1
       with:
