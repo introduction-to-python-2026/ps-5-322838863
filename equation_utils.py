@@ -1,4 +1,4 @@
-from sympy import symbols, Eq, solve as sympy_solve
+from sympy import symbols, Eq, solve 
 
 ELEMENTS = [
     'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne',
@@ -15,8 +15,7 @@ ELEMENTS = [
     'Rg', 'Cn', 'Uut', 'Uuq', 'Uup', 'Uuh', 'Uus', 'Uuo'
 ]
 
-def generate_equation_for_element(compounds, coefficients, element):
-    """Generates a symbolic equation for the given element."""
+def generate_equation_for_element(compounds, coefficients, element):    
     equation = 0
     for i, compound in enumerate(compounds):
         if element in compound:
@@ -25,7 +24,6 @@ def generate_equation_for_element(compounds, coefficients, element):
 
 
 def build_equations(reactant_atoms, product_atoms):
-    """Builds symbolic equations for each element to balance a chemical reaction."""
     reactant_coefficients = list(symbols(f'a0:{len(reactant_atoms)}'))
     product_coefficients = list(symbols(f'b0:{len(product_atoms)}'))
     product_coefficients = product_coefficients[:-1] + [1]  # last product = 1
@@ -41,16 +39,10 @@ def build_equations(reactant_atoms, product_atoms):
 
 
 def my_solve(equations, coefficients):
-    """
-    Solves the system of equations for the coefficients of the reaction
-    and returns float values instead of rationals.
-    """
-    solution = sympy_solve(equations, coefficients, dict=True)
-    if not solution:
-        raise ValueError("No solution found")
-    solution = solution[0]  # take the first solution dict
+     solution = solve(equations, coefficients)
 
-    result = []
-    for c in coefficients:
-        result.append(float(solution[c]))  # convert to float
-    return result
+    if len(solution) == len(coefficients):
+        coefficient_values = list()
+        for coefficient in coefficients:
+            coefficient_values.append(float(solution[coefficient]))
+        return coefficient_values
